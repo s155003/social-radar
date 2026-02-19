@@ -1,0 +1,108 @@
+# ================================================================
+#                     SocialRadar Configuration
+# ================================================================
+
+app:
+  name: "SocialRadar"
+  version: "1.0.0"
+  timezone: "America/New_York"
+  output_dir: "output"
+
+# ================================================================
+# Scraper Settings
+# ================================================================
+scrapers:
+  tiktok:
+    enabled: true
+    regions: ["US", "GB", "CA", "AU"]
+    max_items: 30
+    categories:
+      - "trending"
+      - "entertainment"
+      - "sports"
+      - "food"
+      - "technology"
+      - "news"
+
+  instagram:
+    enabled: true
+    max_items: 30
+    sources:
+      - type: "hashtag"
+        tags: ["trending", "viral", "fyp", "reels", "breakingnews"]
+      - type: "explore"
+
+  reddit:
+    enabled: true
+    subreddits:
+      - "videos"
+      - "trends"
+      - "worldnews"
+      - "entertainment"
+      - "sports"
+      - "technology"
+      - "pop_culture"
+    max_items: 25
+    min_score: 500
+
+  youtube:
+    enabled: true
+    regions: ["US"]
+    categories:
+      - "trending"
+      - "news"
+      - "entertainment"
+    max_items: 20
+
+# ================================================================
+# Content Filtering
+# ================================================================
+filters:
+  min_engagement: 1000
+  languages: ["en"]
+  exclude_keywords:
+    - "nsfw"
+    - "18+"
+  deduplicate: true
+  dedupe_threshold: 0.85
+
+# ================================================================
+# Report Settings
+# ================================================================
+report:
+  formats: ["html", "json", "terminal"]
+  max_items_per_source: 10
+  trending_score_weight:
+    views: 0.35
+    likes: 0.25
+    comments: 0.20
+    shares: 0.20
+
+# ================================================================
+# Scheduler
+# ================================================================
+schedule:
+  enabled: false
+  interval_minutes: 60
+  run_on_start: true
+
+# ================================================================
+# Notifications (optional)
+# ================================================================
+notifications:
+  enabled: false
+  channels:
+    discord:
+      enabled: false
+      webhook_url: "YOUR_DISCORD_WEBHOOK_URL"
+    telegram:
+      enabled: false
+      bot_token: "YOUR_BOT_TOKEN"
+      chat_id: "YOUR_CHAT_ID"
+    email:
+      enabled: false
+      smtp_host: "smtp.gmail.com"
+      smtp_port: 587
+      sender: "your@email.com"
+      password: "YOUR_APP_PASSWORD"
+      recipients: ["recipient@email.com"]

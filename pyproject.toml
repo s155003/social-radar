@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "socialradar"
+version = "1.0.0"
+description = "Trending content aggregator for TikTok, Instagram, Reddit, and YouTube"
+requires-python = ">=3.9"
+dependencies = [
+    "requests>=2.32.0",
+    "PyYAML>=6.0.0",
+]
+
+[project.scripts]
+socialradar = "socialradar.__main__:run"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["socialradar*"]
